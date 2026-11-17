@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as MapRouteImport } from './routes/map'
+import { Route as CityCityIdRouteImport } from './routes/city.$cityId'
 import { Route as PlacePlaceIdRouteImport } from './routes/place.$placeId'
+import { Route as RegionRegionIdRouteImport } from './routes/region.$regionId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,9 +31,19 @@ const MapRoute = MapRouteImport.update({
   path: '/map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CityCityIdRoute = CityCityIdRouteImport.update({
+  id: '/city/$cityId',
+  path: '/city/$cityId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlacePlaceIdRoute = PlacePlaceIdRouteImport.update({
   id: '/place/$placeId',
   path: '/place/$placeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegionRegionIdRoute = RegionRegionIdRouteImport.update({
+  id: '/region/$regionId',
+  path: '/region/$regionId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -39,34 +51,61 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/map': typeof MapRoute
+  '/city/$cityId': typeof CityCityIdRoute
   '/place/$placeId': typeof PlacePlaceIdRoute
+  '/region/$regionId': typeof RegionRegionIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/map': typeof MapRoute
+  '/city/$cityId': typeof CityCityIdRoute
   '/place/$placeId': typeof PlacePlaceIdRoute
+  '/region/$regionId': typeof RegionRegionIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/map': typeof MapRoute
+  '/city/$cityId': typeof CityCityIdRoute
   '/place/$placeId': typeof PlacePlaceIdRoute
+  '/region/$regionId': typeof RegionRegionIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/catalog' | '/map' | '/place/$placeId'
+  fullPaths:
+    | '/'
+    | '/catalog'
+    | '/map'
+    | '/city/$cityId'
+    | '/place/$placeId'
+    | '/region/$regionId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/catalog' | '/map' | '/place/$placeId'
-  id: '__root__' | '/' | '/catalog' | '/map' | '/place/$placeId'
+  to:
+    | '/'
+    | '/catalog'
+    | '/map'
+    | '/city/$cityId'
+    | '/place/$placeId'
+    | '/region/$regionId'
+  id:
+    | '__root__'
+    | '/'
+    | '/catalog'
+    | '/map'
+    | '/city/$cityId'
+    | '/place/$placeId'
+    | '/region/$regionId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CatalogRoute: typeof CatalogRoute
   MapRoute: typeof MapRoute
+  CityCityIdRoute: typeof CityCityIdRoute
   PlacePlaceIdRoute: typeof PlacePlaceIdRoute
+  RegionRegionIdRoute: typeof RegionRegionIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,11 +131,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/city/$cityId': {
+      id: '/city/$cityId'
+      path: '/city/$cityId'
+      fullPath: '/city/$cityId'
+      preLoaderRoute: typeof CityCityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/place/$placeId': {
       id: '/place/$placeId'
       path: '/place/$placeId'
       fullPath: '/place/$placeId'
       preLoaderRoute: typeof PlacePlaceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/region/$regionId': {
+      id: '/region/$regionId'
+      path: '/region/$regionId'
+      fullPath: '/region/$regionId'
+      preLoaderRoute: typeof RegionRegionIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -106,7 +159,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CatalogRoute: CatalogRoute,
   MapRoute: MapRoute,
+  CityCityIdRoute: CityCityIdRoute,
   PlacePlaceIdRoute: PlacePlaceIdRoute,
+  RegionRegionIdRoute: RegionRegionIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
