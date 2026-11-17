@@ -175,7 +175,7 @@ function MapPage() {
           size="sm"
           onClick={() => mapRef.current?.resetView()}
           aria-label={t.map.resetViewLabel}
-          className={cn("absolute right-3 z-[500] shadow-[var(--shadow-lift)]", selected ? "bottom-[calc(100%-6.5rem)] lg:bottom-6" : "bottom-6")}
+          className={cn("absolute right-3 top-[6.5rem] z-[500] shadow-[var(--shadow-lift)] lg:bottom-6 lg:top-auto", filtersOpen && "hidden lg:inline-flex")}
         >
           <Locate />
           {t.map.resetView}
