@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as MapRouteImport } from './routes/map'
+import { Route as PlacePlaceIdRouteImport } from './routes/place.$placeId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const MapRoute = MapRouteImport.update({
   path: '/map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlacePlaceIdRoute = PlacePlaceIdRouteImport.update({
+  id: '/place/$placeId',
+  path: '/place/$placeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/map': typeof MapRoute
+  '/place/$placeId': typeof PlacePlaceIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/map': typeof MapRoute
+  '/place/$placeId': typeof PlacePlaceIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/map': typeof MapRoute
+  '/place/$placeId': typeof PlacePlaceIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/catalog' | '/map'
+  fullPaths: '/' | '/catalog' | '/map' | '/place/$placeId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/catalog' | '/map'
-  id: '__root__' | '/' | '/catalog' | '/map'
+  to: '/' | '/catalog' | '/map' | '/place/$placeId'
+  id: '__root__' | '/' | '/catalog' | '/map' | '/place/$placeId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CatalogRoute: typeof CatalogRoute
   MapRoute: typeof MapRoute
+  PlacePlaceIdRoute: typeof PlacePlaceIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/place/$placeId': {
+      id: '/place/$placeId'
+      path: '/place/$placeId'
+      fullPath: '/place/$placeId'
+      preLoaderRoute: typeof PlacePlaceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CatalogRoute: CatalogRoute,
   MapRoute: MapRoute,
+  PlacePlaceIdRoute: PlacePlaceIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
