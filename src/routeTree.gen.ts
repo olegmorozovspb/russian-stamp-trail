@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CatalogRouteImport } from './routes/catalog'
+import { Route as CollectionRouteImport } from './routes/collection'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as CityCityIdRouteImport } from './routes/city.$cityId'
+import { Route as PassportsIndexRouteImport } from './routes/passports.index'
+import { Route as PassportsPassportIdRouteImport } from './routes/passports.$passportId'
+import { Route as PlacePlaceIdRouteImport } from './routes/place.$placeId'
+import { Route as RegionRegionIdRouteImport } from './routes/region.$regionId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatalogRoute = CatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionRoute = CollectionRouteImport.update({
+  id: '/collection',
+  path: '/collection',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CityCityIdRoute = CityCityIdRouteImport.update({
+  id: '/city/$cityId',
+  path: '/city/$cityId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PassportsIndexRoute = PassportsIndexRouteImport.update({
+  id: '/passports/',
+  path: '/passports/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PassportsPassportIdRoute = PassportsPassportIdRouteImport.update({
+  id: '/passports/$passportId',
+  path: '/passports/$passportId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlacePlaceIdRoute = PlacePlaceIdRouteImport.update({
+  id: '/place/$placeId',
+  path: '/place/$placeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegionRegionIdRoute = RegionRegionIdRouteImport.update({
+  id: '/region/$regionId',
+  path: '/region/$regionId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
+  '/collection': typeof CollectionRoute
+  '/map': typeof MapRoute
+  '/city/$cityId': typeof CityCityIdRoute
+  '/passports/$passportId': typeof PassportsPassportIdRoute
+  '/place/$placeId': typeof PlacePlaceIdRoute
+  '/region/$regionId': typeof RegionRegionIdRoute
+  '/passports/': typeof PassportsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
+  '/collection': typeof CollectionRoute
+  '/map': typeof MapRoute
+  '/city/$cityId': typeof CityCityIdRoute
+  '/passports/$passportId': typeof PassportsPassportIdRoute
+  '/place/$placeId': typeof PlacePlaceIdRoute
+  '/region/$regionId': typeof RegionRegionIdRoute
+  '/passports': typeof PassportsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/catalog': typeof CatalogRoute
+  '/collection': typeof CollectionRoute
+  '/map': typeof MapRoute
+  '/city/$cityId': typeof CityCityIdRoute
+  '/passports/$passportId': typeof PassportsPassportIdRoute
+  '/place/$placeId': typeof PlacePlaceIdRoute
+  '/region/$regionId': typeof RegionRegionIdRoute
+  '/passports/': typeof PassportsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/catalog'
+    | '/collection'
+    | '/map'
+    | '/city/$cityId'
+    | '/passports/$passportId'
+    | '/place/$placeId'
+    | '/region/$regionId'
+    | '/passports/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/catalog'
+    | '/collection'
+    | '/map'
+    | '/city/$cityId'
+    | '/passports/$passportId'
+    | '/place/$placeId'
+    | '/region/$regionId'
+    | '/passports'
+  id:
+    | '__root__'
+    | '/'
+    | '/catalog'
+    | '/collection'
+    | '/map'
+    | '/city/$cityId'
+    | '/passports/$passportId'
+    | '/place/$placeId'
+    | '/region/$regionId'
+    | '/passports/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CatalogRoute: typeof CatalogRoute
+  CollectionRoute: typeof CollectionRoute
+  MapRoute: typeof MapRoute
+  CityCityIdRoute: typeof CityCityIdRoute
+  PassportsPassportIdRoute: typeof PassportsPassportIdRoute
+  PlacePlaceIdRoute: typeof PlacePlaceIdRoute
+  RegionRegionIdRoute: typeof RegionRegionIdRoute
+  PassportsIndexRoute: typeof PassportsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalog': {
+      id: '/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof CatalogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collection': {
+      id: '/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof CollectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/city/$cityId': {
+      id: '/city/$cityId'
+      path: '/city/$cityId'
+      fullPath: '/city/$cityId'
+      preLoaderRoute: typeof CityCityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/passports/': {
+      id: '/passports/'
+      path: '/passports'
+      fullPath: '/passports/'
+      preLoaderRoute: typeof PassportsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/passports/$passportId': {
+      id: '/passports/$passportId'
+      path: '/passports/$passportId'
+      fullPath: '/passports/$passportId'
+      preLoaderRoute: typeof PassportsPassportIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/place/$placeId': {
+      id: '/place/$placeId'
+      path: '/place/$placeId'
+      fullPath: '/place/$placeId'
+      preLoaderRoute: typeof PlacePlaceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/region/$regionId': {
+      id: '/region/$regionId'
+      path: '/region/$regionId'
+      fullPath: '/region/$regionId'
+      preLoaderRoute: typeof RegionRegionIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CatalogRoute: CatalogRoute,
+  CollectionRoute: CollectionRoute,
+  MapRoute: MapRoute,
+  CityCityIdRoute: CityCityIdRoute,
+  PassportsPassportIdRoute: PassportsPassportIdRoute,
+  PlacePlaceIdRoute: PlacePlaceIdRoute,
+  RegionRegionIdRoute: RegionRegionIdRoute,
+  PassportsIndexRoute: PassportsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
