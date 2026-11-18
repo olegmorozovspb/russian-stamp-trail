@@ -208,7 +208,7 @@ function SelectedPlaceCard({ item, onClose }: { item: PlaceItem; onClose: () => 
           </p>
           <div className="mt-1.5 flex flex-wrap gap-1">
             {item.place.isDemo && <DemoBadge />}
-            <AvailabilityBadge availability={item.stamps.some((s) => s.availability === "available") ? "available" : item.stamps[0].availability} />
+            <AvailabilityBadge availability={item.stamps.some((s) => s.availability === "available") ? "available" : (item.stamps[0]?.availability ?? "unknown")} />
           </div>
         </div>
       </div>

@@ -19,7 +19,9 @@ export function moveStop(stops: DraftStop[], index: number, dir: -1 | 1): DraftS
   const target = index + dir;
   if (index < 0 || index >= stops.length || target < 0 || target >= stops.length) return stops;
   const next = [...stops];
-  [next[index], next[target]] = [next[target], next[index]];
+  const a = next[index]!;
+  next[index] = next[target]!;
+  next[target] = a;
   return next;
 }
 
@@ -35,7 +37,7 @@ export function straightLineKm(a: LatLng, b: LatLng): number {
 
 export function totalStraightLineKm(points: LatLng[]): number {
   let sum = 0;
-  for (let i = 1; i < points.length; i++) sum += straightLineKm(points[i - 1], points[i]);
+  for (let i = 1; i < points.length; i++) sum += straightLineKm(points[i - 1]!, points[i]!);
   return sum;
 }
 

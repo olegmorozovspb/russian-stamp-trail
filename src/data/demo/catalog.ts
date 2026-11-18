@@ -193,7 +193,7 @@ export const demoStamps: Stamp[] = stampSpecs.map((s) => {
     placeId: s.place,
     name: s.name,
     description: s.description,
-    photos: [demoStampImages[s.img]],
+    photos: demoStampImages[s.img] ? [demoStampImages[s.img]!] : [],
     conditions: s.conditions.map((c) => ({ ...c, id: `${s.id}-${c.id}` })),
     // paid(0) above means «входит в стоимость билета» — normalised to unknown price with ticket condition
     price: s.price.kind === "paid" && s.price.amount === 0 ? { kind: "unknown" } : s.price,

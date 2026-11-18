@@ -10,18 +10,36 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as MapRouteImport } from './routes/map'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminCitiesRouteImport } from './routes/admin.cities'
+import { Route as AdminOrganizationsRouteImport } from './routes/admin.organizations'
+import { Route as AdminPassportsRouteImport } from './routes/admin.passports'
+import { Route as AdminRegionsRouteImport } from './routes/admin.regions'
+import { Route as AdminSubmissionsRouteImport } from './routes/admin.submissions'
+import { Route as AdminVerificationRouteImport } from './routes/admin.verification'
 import { Route as CityCityIdRouteImport } from './routes/city.$cityId'
 import { Route as PassportsIndexRouteImport } from './routes/passports.index'
 import { Route as PassportsPassportIdRouteImport } from './routes/passports.$passportId'
 import { Route as PlacePlaceIdRouteImport } from './routes/place.$placeId'
 import { Route as RegionRegionIdRouteImport } from './routes/region.$regionId'
+import { Route as RoutesIndexRouteImport } from './routes/routes.index'
+import { Route as RoutesRouteIdRouteImport } from './routes/routes.$routeId'
+import { Route as AdminPlacesIndexRouteImport } from './routes/admin.places.index'
+import { Route as AdminStampsIndexRouteImport } from './routes/admin.stamps.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CatalogRoute = CatalogRouteImport.update({
@@ -38,6 +56,46 @@ const MapRoute = MapRouteImport.update({
   id: '/map',
   path: '/map',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCitiesRoute = AdminCitiesRouteImport.update({
+  id: '/cities',
+  path: '/cities',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrganizationsRoute = AdminOrganizationsRouteImport.update({
+  id: '/organizations',
+  path: '/organizations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPassportsRoute = AdminPassportsRouteImport.update({
+  id: '/passports',
+  path: '/passports',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRegionsRoute = AdminRegionsRouteImport.update({
+  id: '/regions',
+  path: '/regions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSubmissionsRoute = AdminSubmissionsRouteImport.update({
+  id: '/submissions',
+  path: '/submissions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminVerificationRoute = AdminVerificationRouteImport.update({
+  id: '/verification',
+  path: '/verification',
+  getParentRoute: () => AdminRoute,
 } as any)
 const CityCityIdRoute = CityCityIdRouteImport.update({
   id: '/city/$cityId',
@@ -64,87 +122,187 @@ const RegionRegionIdRoute = RegionRegionIdRouteImport.update({
   path: '/region/$regionId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoutesIndexRoute = RoutesIndexRouteImport.update({
+  id: '/routes/',
+  path: '/routes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoutesRouteIdRoute = RoutesRouteIdRouteImport.update({
+  id: '/routes/$routeId',
+  path: '/routes/$routeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPlacesIndexRoute = AdminPlacesIndexRouteImport.update({
+  id: '/places/',
+  path: '/places/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminStampsIndexRoute = AdminStampsIndexRouteImport.update({
+  id: '/stamps/',
+  path: '/stamps/',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/catalog': typeof CatalogRoute
   '/collection': typeof CollectionRoute
   '/map': typeof MapRoute
+  '/profile': typeof ProfileRoute
+  '/admin/cities': typeof AdminCitiesRoute
+  '/admin/organizations': typeof AdminOrganizationsRoute
+  '/admin/passports': typeof AdminPassportsRoute
+  '/admin/regions': typeof AdminRegionsRoute
+  '/admin/submissions': typeof AdminSubmissionsRoute
+  '/admin/verification': typeof AdminVerificationRoute
   '/city/$cityId': typeof CityCityIdRoute
   '/passports/$passportId': typeof PassportsPassportIdRoute
   '/place/$placeId': typeof PlacePlaceIdRoute
   '/region/$regionId': typeof RegionRegionIdRoute
+  '/routes/$routeId': typeof RoutesRouteIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/passports/': typeof PassportsIndexRoute
+  '/routes/': typeof RoutesIndexRoute
+  '/admin/places/': typeof AdminPlacesIndexRoute
+  '/admin/stamps/': typeof AdminStampsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/catalog': typeof CatalogRoute
   '/collection': typeof CollectionRoute
   '/map': typeof MapRoute
+  '/profile': typeof ProfileRoute
+  '/admin/cities': typeof AdminCitiesRoute
+  '/admin/organizations': typeof AdminOrganizationsRoute
+  '/admin/passports': typeof AdminPassportsRoute
+  '/admin/regions': typeof AdminRegionsRoute
+  '/admin/submissions': typeof AdminSubmissionsRoute
+  '/admin/verification': typeof AdminVerificationRoute
   '/city/$cityId': typeof CityCityIdRoute
   '/passports/$passportId': typeof PassportsPassportIdRoute
   '/place/$placeId': typeof PlacePlaceIdRoute
   '/region/$regionId': typeof RegionRegionIdRoute
+  '/routes/$routeId': typeof RoutesRouteIdRoute
+  '/admin': typeof AdminIndexRoute
   '/passports': typeof PassportsIndexRoute
+  '/routes': typeof RoutesIndexRoute
+  '/admin/places': typeof AdminPlacesIndexRoute
+  '/admin/stamps': typeof AdminStampsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/catalog': typeof CatalogRoute
   '/collection': typeof CollectionRoute
   '/map': typeof MapRoute
+  '/profile': typeof ProfileRoute
+  '/admin/cities': typeof AdminCitiesRoute
+  '/admin/organizations': typeof AdminOrganizationsRoute
+  '/admin/passports': typeof AdminPassportsRoute
+  '/admin/regions': typeof AdminRegionsRoute
+  '/admin/submissions': typeof AdminSubmissionsRoute
+  '/admin/verification': typeof AdminVerificationRoute
   '/city/$cityId': typeof CityCityIdRoute
   '/passports/$passportId': typeof PassportsPassportIdRoute
   '/place/$placeId': typeof PlacePlaceIdRoute
   '/region/$regionId': typeof RegionRegionIdRoute
+  '/routes/$routeId': typeof RoutesRouteIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/passports/': typeof PassportsIndexRoute
+  '/routes/': typeof RoutesIndexRoute
+  '/admin/places/': typeof AdminPlacesIndexRoute
+  '/admin/stamps/': typeof AdminStampsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/catalog'
     | '/collection'
     | '/map'
+    | '/profile'
+    | '/admin/cities'
+    | '/admin/organizations'
+    | '/admin/passports'
+    | '/admin/regions'
+    | '/admin/submissions'
+    | '/admin/verification'
     | '/city/$cityId'
     | '/passports/$passportId'
     | '/place/$placeId'
     | '/region/$regionId'
+    | '/routes/$routeId'
+    | '/admin/'
     | '/passports/'
+    | '/routes/'
+    | '/admin/places/'
+    | '/admin/stamps/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/catalog'
     | '/collection'
     | '/map'
+    | '/profile'
+    | '/admin/cities'
+    | '/admin/organizations'
+    | '/admin/passports'
+    | '/admin/regions'
+    | '/admin/submissions'
+    | '/admin/verification'
     | '/city/$cityId'
     | '/passports/$passportId'
     | '/place/$placeId'
     | '/region/$regionId'
+    | '/routes/$routeId'
+    | '/admin'
     | '/passports'
+    | '/routes'
+    | '/admin/places'
+    | '/admin/stamps'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/catalog'
     | '/collection'
     | '/map'
+    | '/profile'
+    | '/admin/cities'
+    | '/admin/organizations'
+    | '/admin/passports'
+    | '/admin/regions'
+    | '/admin/submissions'
+    | '/admin/verification'
     | '/city/$cityId'
     | '/passports/$passportId'
     | '/place/$placeId'
     | '/region/$regionId'
+    | '/routes/$routeId'
+    | '/admin/'
     | '/passports/'
+    | '/routes/'
+    | '/admin/places/'
+    | '/admin/stamps/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   CatalogRoute: typeof CatalogRoute
   CollectionRoute: typeof CollectionRoute
   MapRoute: typeof MapRoute
+  ProfileRoute: typeof ProfileRoute
   CityCityIdRoute: typeof CityCityIdRoute
   PassportsPassportIdRoute: typeof PassportsPassportIdRoute
   PlacePlaceIdRoute: typeof PlacePlaceIdRoute
   RegionRegionIdRoute: typeof RegionRegionIdRoute
+  RoutesRouteIdRoute: typeof RoutesRouteIdRoute
   PassportsIndexRoute: typeof PassportsIndexRoute
+  RoutesIndexRoute: typeof RoutesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -154,6 +312,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/catalog': {
@@ -176,6 +341,62 @@ declare module '@tanstack/react-router' {
       fullPath: '/map'
       preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/cities': {
+      id: '/admin/cities'
+      path: '/cities'
+      fullPath: '/admin/cities'
+      preLoaderRoute: typeof AdminCitiesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/organizations': {
+      id: '/admin/organizations'
+      path: '/organizations'
+      fullPath: '/admin/organizations'
+      preLoaderRoute: typeof AdminOrganizationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/passports': {
+      id: '/admin/passports'
+      path: '/passports'
+      fullPath: '/admin/passports'
+      preLoaderRoute: typeof AdminPassportsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/regions': {
+      id: '/admin/regions'
+      path: '/regions'
+      fullPath: '/admin/regions'
+      preLoaderRoute: typeof AdminRegionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/submissions': {
+      id: '/admin/submissions'
+      path: '/submissions'
+      fullPath: '/admin/submissions'
+      preLoaderRoute: typeof AdminSubmissionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/verification': {
+      id: '/admin/verification'
+      path: '/verification'
+      fullPath: '/admin/verification'
+      preLoaderRoute: typeof AdminVerificationRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/city/$cityId': {
       id: '/city/$cityId'
@@ -212,19 +433,77 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegionRegionIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/routes/': {
+      id: '/routes/'
+      path: '/routes'
+      fullPath: '/routes/'
+      preLoaderRoute: typeof RoutesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/routes/$routeId': {
+      id: '/routes/$routeId'
+      path: '/routes/$routeId'
+      fullPath: '/routes/$routeId'
+      preLoaderRoute: typeof RoutesRouteIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/places/': {
+      id: '/admin/places/'
+      path: '/places'
+      fullPath: '/admin/places/'
+      preLoaderRoute: typeof AdminPlacesIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/stamps/': {
+      id: '/admin/stamps/'
+      path: '/stamps'
+      fullPath: '/admin/stamps/'
+      preLoaderRoute: typeof AdminStampsIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminCitiesRoute: typeof AdminCitiesRoute
+  AdminOrganizationsRoute: typeof AdminOrganizationsRoute
+  AdminPassportsRoute: typeof AdminPassportsRoute
+  AdminRegionsRoute: typeof AdminRegionsRoute
+  AdminSubmissionsRoute: typeof AdminSubmissionsRoute
+  AdminVerificationRoute: typeof AdminVerificationRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminPlacesIndexRoute: typeof AdminPlacesIndexRoute
+  AdminStampsIndexRoute: typeof AdminStampsIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminCitiesRoute: AdminCitiesRoute,
+  AdminOrganizationsRoute: AdminOrganizationsRoute,
+  AdminPassportsRoute: AdminPassportsRoute,
+  AdminRegionsRoute: AdminRegionsRoute,
+  AdminSubmissionsRoute: AdminSubmissionsRoute,
+  AdminVerificationRoute: AdminVerificationRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminPlacesIndexRoute: AdminPlacesIndexRoute,
+  AdminStampsIndexRoute: AdminStampsIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   CatalogRoute: CatalogRoute,
   CollectionRoute: CollectionRoute,
   MapRoute: MapRoute,
+  ProfileRoute: ProfileRoute,
   CityCityIdRoute: CityCityIdRoute,
   PassportsPassportIdRoute: PassportsPassportIdRoute,
   PlacePlaceIdRoute: PlacePlaceIdRoute,
   RegionRegionIdRoute: RegionRegionIdRoute,
+  RoutesRouteIdRoute: RoutesRouteIdRoute,
   PassportsIndexRoute: PassportsIndexRoute,
+  RoutesIndexRoute: RoutesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

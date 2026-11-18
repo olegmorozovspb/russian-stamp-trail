@@ -33,7 +33,7 @@ function CountBubble({ n }: { n: number }) {
 function Header() {
   const t = useT();
   const { list } = useCollection();
-  const items = [...primaryNav.slice(0, 4), ...secondaryNav, primaryNav[4]];
+  const items = [...primaryNav.slice(0, 4), ...secondaryNav, ...primaryNav.slice(4)];
   return (
     <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
       <div className="mx-auto flex h-[var(--header-h)] max-w-6xl items-center gap-4 px-4 sm:px-6">
