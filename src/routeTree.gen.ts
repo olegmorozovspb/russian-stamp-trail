@@ -30,7 +30,9 @@ import { Route as RegionRegionIdRouteImport } from './routes/region.$regionId'
 import { Route as RoutesIndexRouteImport } from './routes/routes.index'
 import { Route as RoutesRouteIdRouteImport } from './routes/routes.$routeId'
 import { Route as AdminPlacesIndexRouteImport } from './routes/admin.places.index'
+import { Route as AdminPlacesPlaceIdRouteImport } from './routes/admin.places.$placeId'
 import { Route as AdminStampsIndexRouteImport } from './routes/admin.stamps.index'
+import { Route as AdminStampsStampIdRouteImport } from './routes/admin.stamps.$stampId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -137,9 +139,19 @@ const AdminPlacesIndexRoute = AdminPlacesIndexRouteImport.update({
   path: '/places/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminPlacesPlaceIdRoute = AdminPlacesPlaceIdRouteImport.update({
+  id: '/places/$placeId',
+  path: '/places/$placeId',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminStampsIndexRoute = AdminStampsIndexRouteImport.update({
   id: '/stamps/',
   path: '/stamps/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminStampsStampIdRoute = AdminStampsStampIdRouteImport.update({
+  id: '/stamps/$stampId',
+  path: '/stamps/$stampId',
   getParentRoute: () => AdminRoute,
 } as any)
 
@@ -164,6 +176,8 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/passports/': typeof PassportsIndexRoute
   '/routes/': typeof RoutesIndexRoute
+  '/admin/places/$placeId': typeof AdminPlacesPlaceIdRoute
+  '/admin/stamps/$stampId': typeof AdminStampsStampIdRoute
   '/admin/places/': typeof AdminPlacesIndexRoute
   '/admin/stamps/': typeof AdminStampsIndexRoute
 }
@@ -187,6 +201,8 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/passports': typeof PassportsIndexRoute
   '/routes': typeof RoutesIndexRoute
+  '/admin/places/$placeId': typeof AdminPlacesPlaceIdRoute
+  '/admin/stamps/$stampId': typeof AdminStampsStampIdRoute
   '/admin/places': typeof AdminPlacesIndexRoute
   '/admin/stamps': typeof AdminStampsIndexRoute
 }
@@ -212,6 +228,8 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/passports/': typeof PassportsIndexRoute
   '/routes/': typeof RoutesIndexRoute
+  '/admin/places/$placeId': typeof AdminPlacesPlaceIdRoute
+  '/admin/stamps/$stampId': typeof AdminStampsStampIdRoute
   '/admin/places/': typeof AdminPlacesIndexRoute
   '/admin/stamps/': typeof AdminStampsIndexRoute
 }
@@ -238,6 +256,8 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/passports/'
     | '/routes/'
+    | '/admin/places/$placeId'
+    | '/admin/stamps/$stampId'
     | '/admin/places/'
     | '/admin/stamps/'
   fileRoutesByTo: FileRoutesByTo
@@ -261,6 +281,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/passports'
     | '/routes'
+    | '/admin/places/$placeId'
+    | '/admin/stamps/$stampId'
     | '/admin/places'
     | '/admin/stamps'
   id:
@@ -285,6 +307,8 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/passports/'
     | '/routes/'
+    | '/admin/places/$placeId'
+    | '/admin/stamps/$stampId'
     | '/admin/places/'
     | '/admin/stamps/'
   fileRoutesById: FileRoutesById
@@ -454,11 +478,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPlacesIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/places/$placeId': {
+      id: '/admin/places/$placeId'
+      path: '/places/$placeId'
+      fullPath: '/admin/places/$placeId'
+      preLoaderRoute: typeof AdminPlacesPlaceIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/stamps/': {
       id: '/admin/stamps/'
       path: '/stamps'
       fullPath: '/admin/stamps/'
       preLoaderRoute: typeof AdminStampsIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/stamps/$stampId': {
+      id: '/admin/stamps/$stampId'
+      path: '/stamps/$stampId'
+      fullPath: '/admin/stamps/$stampId'
+      preLoaderRoute: typeof AdminStampsStampIdRouteImport
       parentRoute: typeof AdminRoute
     }
   }
@@ -472,6 +510,8 @@ interface AdminRouteChildren {
   AdminSubmissionsRoute: typeof AdminSubmissionsRoute
   AdminVerificationRoute: typeof AdminVerificationRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminPlacesPlaceIdRoute: typeof AdminPlacesPlaceIdRoute
+  AdminStampsStampIdRoute: typeof AdminStampsStampIdRoute
   AdminPlacesIndexRoute: typeof AdminPlacesIndexRoute
   AdminStampsIndexRoute: typeof AdminStampsIndexRoute
 }
@@ -484,6 +524,8 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminSubmissionsRoute: AdminSubmissionsRoute,
   AdminVerificationRoute: AdminVerificationRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminPlacesPlaceIdRoute: AdminPlacesPlaceIdRoute,
+  AdminStampsStampIdRoute: AdminStampsStampIdRoute,
   AdminPlacesIndexRoute: AdminPlacesIndexRoute,
   AdminStampsIndexRoute: AdminStampsIndexRoute,
 }
