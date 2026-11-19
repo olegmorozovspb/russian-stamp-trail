@@ -51,7 +51,7 @@ function AdminLayout() {
           </div>
         </div>
         <h1 className="mb-4 text-3xl font-extrabold">{t.admin.title}</h1>
-        <div className="grid gap-6 lg:grid-cols-[210px_1fr]">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[210px_minmax(0,1fr)]">
           <nav aria-label={t.admin.title} className="-mx-4 overflow-x-auto px-4 scrollbar-none lg:mx-0 lg:px-0">
             <ul className="flex gap-1 lg:sticky lg:top-[calc(var(--header-h)+1rem)] lg:flex-col">
               {sections.map((s) => (

@@ -82,7 +82,7 @@ function PlacePage() {
 
       {place.isDemo && <Notice className="mt-4">{t.place.demoWarning}</Notice>}
 
-      <div className="mt-5 grid gap-6 lg:grid-cols-[1fr_360px]">
+      <div className="mt-5 grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div className="min-w-0 space-y-6">
           {photo && (
             <figure className="overflow-hidden rounded-lg border border-border">

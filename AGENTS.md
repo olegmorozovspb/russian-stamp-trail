@@ -28,3 +28,15 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project architecture rules
+
+- UI never imports `src/data/demo/*` directly; pages read data via `src/services/queries.ts` → `catalogService` → `dataSource`. Why: swapping demo data for Supabase only means implementing `CatalogDataSource` (`src/services/data-source.ts`).
+- Pure catalog/route/collection rules live in `src/services/catalog-logic.ts` and `src/lib/*-logic.ts` with unit tests next to them. Why: keeps business rules testable and provider-independent.
+- Place, Organization, Stamp and Passport stay separate entities (`src/types/domain.ts`); stamp name is optional. Why: one org → many places, one place → many stamps, one stamp → many passports.
+- All user-facing strings go through `src/i18n` (`useT()`), never hard-coded in components. Why: more languages are planned.
+- `src/components/map/StampMap.tsx` is the only file that touches Leaflet; it loads Leaflet dynamically after mount and reads tiles/attribution from `src/lib/map/config.ts`. Why: SSR safety and a replaceable map provider.
+- Guest collection and route builder persist in localStorage via `src/stores/local-store.ts` (server snapshot = empty). Why: no auth yet; avoids hydration mismatch; replace with Supabase tables later behind the same hooks.
+- Admin panel edits are in-memory only (`src/components/admin/admin-store.tsx`) and carry no access control. Why: demo UI until server-side roles exist.
+- tsconfig has `exactOptionalPropertyTypes` and `noPropertyAccessFromIndexSignature` off. Why: they conflict with TanStack Router search/link typing; `noUncheckedIndexedAccess` stays on.
+- Base CSS gives every `.grid` `minmax(0,1fr)` columns. Why: implicit grid columns with truncated text overflowed phone screens.

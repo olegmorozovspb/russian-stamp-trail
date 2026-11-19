@@ -61,7 +61,7 @@ export const StampMap = forwardRef<StampMapHandle, StampMapProps>(function Stamp
       if (fitToMarkers && markers.length > 0 && LRef.current) {
         map.fitBounds(LRef.current.latLngBounds(markers.map((m) => [m.lat, m.lng])), { padding: [40, 40], maxZoom: 14 });
       } else {
-        map.setView(mapConfig.russiaView.center, mapConfig.russiaView.zoom);
+        map.fitBounds(mapConfig.russiaBounds);
       }
     },
     focus(lat, lng, zoom = 15) {
@@ -85,7 +85,13 @@ export const StampMap = forwardRef<StampMapHandle, StampMapProps>(function Stamp
           minZoom: mapConfig.minZoom,
           zoomControl: true,
           worldCopyJump: true,
+          maxBounds: [
+            [-85, -200],
+            [85, 400],
+          ],
+          maxBoundsViscosity: 1,
         });
+        map.fitBounds(mapConfig.russiaBounds);
         L.tileLayer(mapConfig.tileUrl, {
           subdomains: mapConfig.subdomains,
           maxZoom: mapConfig.maxZoom,

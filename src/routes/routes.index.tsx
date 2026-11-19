@@ -56,7 +56,7 @@ function RoutesPage() {
 
       <section className="mb-12">
         <SectionHeader title={t.routes.myRoute} hint={t.routes.localNote} />
-        <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-2">
           <div className="space-y-4">
             {stopItems.length === 0 ? (
               <EmptyState icon={<Compass className="size-6" />} title={t.routes.emptyTitle} text={t.routes.emptyText} />

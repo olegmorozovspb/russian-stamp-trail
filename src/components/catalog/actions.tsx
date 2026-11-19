@@ -30,7 +30,7 @@ export function CollectButton({ stampId, size = "default", className }: { stampI
   );
 }
 
-export function AddToRouteButton({ placeId, size = "default", className }: { placeId: string; size?: "sm" | "default" | "lg"; className?: string }) {
+export function AddToRouteButton({ placeId, size = "default", className, compact }: { placeId: string; size?: "sm" | "default" | "lg"; className?: string; compact?: boolean }) {
   const t = useT();
   const { has, add } = useRouteBuilder();
   const inRoute = has(placeId);
@@ -39,6 +39,7 @@ export function AddToRouteButton({ placeId, size = "default", className }: { pla
       size={size}
       variant="paper"
       disabled={inRoute}
+      title={inRoute ? t.place.inRoute : t.place.addToRoute}
       className={cn(className)}
       onClick={(e) => {
         e.preventDefault();
@@ -48,7 +49,7 @@ export function AddToRouteButton({ placeId, size = "default", className }: { pla
       }}
     >
       {inRoute ? <RouteIcon /> : <Plus />}
-      {inRoute ? t.place.inRoute : t.place.addToRoute}
+      <span className={compact ? "sr-only sm:not-sr-only" : undefined}>{inRoute ? t.place.inRoute : t.place.addToRoute}</span>
     </Button>
   );
 }

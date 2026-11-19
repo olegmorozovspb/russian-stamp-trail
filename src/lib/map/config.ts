@@ -10,5 +10,10 @@ export const mapConfig = {
   maxZoom: 19,
   /** Initial view covering Russia */
   russiaView: { center: [61, 82] as [number, number], zoom: 3 },
+  /** Bounds used to fit Russia to any screen size (SW, NE corners) */
+  russiaBounds: [
+    [43, 20],
+    [72, 165],
+  ] as [[number, number], [number, number]],
   minZoom: 2,
 };

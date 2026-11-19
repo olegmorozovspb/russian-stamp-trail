@@ -143,6 +143,10 @@
     font-family: var(--font-sans);
     overflow-x: hidden;
   }
+  /* Grids without explicit columns must not grow wider than the screen (long/truncated text) */
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
   h1,
   h2,
   h3,
@@ -177,13 +181,23 @@
     border-radius: 9999px;
   }
 
-  /* Perforated postage-stamp edge */
+  /* Postage-stamp frame: paper mat with a dashed «perforation» edge */
   .perforated {
-    --p: 7px;
-    -webkit-mask:
-      radial-gradient(circle var(--p) at var(--p) var(--p), #0000 98%, #000) calc(-1 * var(--p)) calc(-1 * var(--p)) / calc(2 * var(--p) + 6px) calc(2 * var(--p) + 6px) round;
-    mask:
-      radial-gradient(circle var(--p) at var(--p) var(--p), #0000 98%, #000) calc(-1 * var(--p)) calc(-1 * var(--p)) / calc(2 * var(--p) + 6px) calc(2 * var(--p) + 6px) round;
+    padding: 6px;
+    background: var(--card);
+    outline: 2px dashed oklch(0.44 0.15 262 / 35%);
+    outline-offset: -3px;
+    border-radius: 4px;
+  }
+
+  /* On the map page, keep Leaflet zoom buttons clear of the mobile search overlay */
+  .map-page .leaflet-top {
+    margin-top: 7.5rem;
+  }
+  @media (min-width: 1024px) {
+    .map-page .leaflet-top {
+      margin-top: 0;
+    }
   }
 
   /* Small all-caps label in guidebook style */

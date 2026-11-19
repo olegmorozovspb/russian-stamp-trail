@@ -65,7 +65,7 @@ function RouteDetailPage() {
           {t.routes.copyToMine}
         </Button>
       </header>
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-2">
         <div className="space-y-4">
           <RouteStopsList stops={stops} onFocus={(p) => mapRef.current?.focus(p.place.location.lat, p.place.location.lng, 15)} />
           <div className="surface p-4">

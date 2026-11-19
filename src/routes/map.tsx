@@ -144,7 +144,7 @@ function MapPage() {
         </ul>
       </aside>
 
-      <div className="relative min-w-0 flex-1">
+      <div className="map-page relative min-w-0 flex-1">
         <StampMap ref={mapRef} markers={markers} selectedId={selectedId} onSelect={select} className="absolute inset-0" />
 
         {/* Mobile search + filters overlay */}
@@ -215,11 +215,11 @@ function SelectedPlaceCard({ item, onClose }: { item: PlaceItem; onClose: () => 
       <div className="flex gap-2 border-t border-border bg-muted/40 p-2">
         <Button asChild size="sm" className="flex-1">
           <Link to="/place/$placeId" params={{ placeId: item.place.id }}>
-            {t.map.openPlace} · {t.common.stamps(item.stamps.length)}
+            <span className="truncate">{t.map.openPlace} · {t.common.stamps(item.stamps.length)}</span>
             <ArrowRight />
           </Link>
         </Button>
-        <AddToRouteButton placeId={item.place.id} size="sm" />
+        <AddToRouteButton placeId={item.place.id} size="sm" compact />
       </div>
     </div>
   );
